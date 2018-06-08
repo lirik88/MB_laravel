@@ -55,7 +55,7 @@ class Devicetype extends Model
 		$this->save();
 	}
 	
-	public function remove()
+	public function remove($devicetype_id)
 	{
 		$this->delete();
 	}
@@ -72,6 +72,13 @@ class Devicetype extends Model
 		return ($this->unit != null)
 			?   $this->unit->name
 			:   '';
+	}
+	
+	public function getUnitId()
+	{
+		return ($this->unit != null)
+			?   $this->unit->id
+			:   null;
 	}
 	
 	public function supInt($unitName)

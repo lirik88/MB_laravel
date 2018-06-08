@@ -75,7 +75,7 @@ class Consumer extends Model
 	
 	public function setContractDateAttribute($value)
 	{
-		if ($value != NULL) {
+		if (isset($value)) {
 			$date = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
 			$this->attributes['contract_date'] = $date;
 		}
@@ -83,14 +83,14 @@ class Consumer extends Model
 	
 	public function getFormatDate($value)
 	{
-		if ($value != NULL) {
+		if (isset($value)) {
 			return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
 		}
 	}
 	
 	public function getPhraseForAct($value)
 	{
-		if ($value == NULL) ['', '', ''];
+		if (isset($value)) ['', '', ''];
 		if ($value == 1) return ['Договором транспортировки газа №',
 			'',
 			'2 к Договору транспортировки газа №'];
@@ -100,5 +100,17 @@ class Consumer extends Model
 		if ($value == 3) return ['Техническим соглашением о порядке учета газа №',
 			' к Договору транспортировки газа от 25/12/2015 №41-НДП',
 			'1 к Техническому соглашению №'];
+		if ($value == 4) return ['Муниципальным контрактом транспортировки газа №',
+			'',
+			'2 к Муниципальному контракту транспортировки газа №'];
+	}
+	
+	public function getNameOfContract($value)
+	{
+		if (isset($value)) '';
+		if ($value == 1) return 'Договору';
+		if ($value == 2) return 'Государственному контракту';
+		if ($value == 3) return 'Техническому соглашению о порядке учета газа к Договору';
+		if ($value == 4) return 'Муниципальному контракту';
 	}
 }

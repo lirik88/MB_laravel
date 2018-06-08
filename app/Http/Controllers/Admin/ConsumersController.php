@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Consumer;
 use App\Contract;
+use App\Device;
+use App\Stamp;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +18,7 @@ class ConsumersController extends Controller
 		$active_user = User::find($active_user_id);
 		$consumers = Consumer::all();
 		
-		return view('admin.consumers.index', compact('active_user','consumers' ));
+		return view('admin.consumers.index', compact('active_user','consumers'));
     }
 	
 	public function create()
@@ -61,7 +63,13 @@ class ConsumersController extends Controller
 	
 	public function destroy($id)
 	{
-		Consumer::find($id)->delete();
-		return redirect()->route('consumers.index');
+		$stamp = Stamp::where('consumer_id', $id)->first();
+		$device = Device::where('consumer_id', $id)->first();
+		if (isset($device) or isset($stamp)) {
+			return redirect()->route('consumers.index');
+		} else {
+			Consumer::find($id)->delete();
+			return redirect()->route('consumers.index');
+		}
     }
 }

@@ -39,9 +39,9 @@ class DevicesController extends Controller
 		    ->mapWithKeys(function($i) {
 			    return [$i->id => $i->name.' '.$i->object_name];
 		    });
-	    $devicetypes = Devicetype::select('name', 'interval_of_muster', 'min_limit', 'max_limit', 'id')->get()
+	    $devicetypes = Devicetype::select('name', 'interval_of_muster', 'min_limit', 'max_limit', 'unit_id', 'id')->get()
 		    ->mapWithKeys(function($i) {
-			    return [$i->id => $i->name.' (ми:'.$i->interval_of_muster.')-('.$i->min_limit.'...'.$i->max_limit.')'];
+			    return [$i->id => $i->name.' (ми:'.$i->interval_of_muster.')-('.$i->min_limit.'...'.$i->max_limit.' '.$i->getUnitName().')'];
 		    });
 	    
 	    return view('admin.devices.create',
@@ -83,9 +83,9 @@ class DevicesController extends Controller
 		    ->mapWithKeys(function($i) {
 			    return [$i->id => $i->name.' '.$i->object_name];
 		    });
-	    $devicetypes = Devicetype::select('name', 'interval_of_muster', 'min_limit', 'max_limit', 'id')->get()
+	    $devicetypes = Devicetype::select('name', 'interval_of_muster', 'min_limit', 'max_limit', 'unit_id', 'id')->get()
 		    ->mapWithKeys(function($i) {
-			    return [$i->id => $i->name.' (ми:'.$i->interval_of_muster.')-('.$i->min_limit.'...'.$i->max_limit.')'];
+			    return [$i->id => $i->name.' (ми:'.$i->interval_of_muster.')-('.$i->min_limit.'...'.$i->max_limit.' '.$i->getUnitName().')'];
 		    });
 	
 	    return view('admin.devices.edit',
@@ -109,8 +109,7 @@ class DevicesController extends Controller
 	    ]);
 	
 	    $device = Device::find($id);
-	
-	    $device->update($request->all());
+	    $device->edit($request->all(), $id);
 	    return redirect()->route('devices.index');
     }
 

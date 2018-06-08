@@ -48,9 +48,13 @@ class Device extends Model
 		return $device;
 	}
 	
-	public function edit($fields)
+	public function edit($fields, $id)
 	{
+		$device = Device::find($id);
 		$this->fill($fields);
+		$this->attributes['next_date'] = $this->setNextDate(
+			$this->attributes['last_date'],
+			$device->devicetype->interval_of_muster);
 		$this->save();
 	}
 	

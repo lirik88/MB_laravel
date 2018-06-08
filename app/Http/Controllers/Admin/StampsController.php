@@ -109,6 +109,6 @@ class StampsController extends Controller
     public function destroy($id)
     {
 	    Stamp::find($id)->delete();
-	    return redirect()->route('stapms.index');
+	    return redirect()->route('stamps.index');
     }
 }

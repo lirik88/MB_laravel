@@ -35,13 +35,13 @@
                                 <td>
                                     <a href="{{route('acts.act_of_control', $consumer->id)}}"
                                        class="glyphicon glyphicon-ok"
-                                       title="Акт проверки"></a>
+                                       title="Акт проверки" target="_blank"></a>
                                     <a href="{{route('acts.act_of_stamps', $consumer->id)}}"
                                        class="glyphicon glyphicon-lock"
-                                       title="Акт установки пломб"></a>
+                                       title="Акт установки пломб" target="_blank"></a>
                                     <a href="{{route('acts.act_of_program', $consumer->id)}}"
                                        class="glyphicon glyphicon-object-align-bottom"
-                                       title="Акт программирования корректора"></a>
+                                       title="Акт программирования корректора" target="_blank"></a>
                                 </td>
                                 <td>
                                     <a href="{{route('consumers.edit',

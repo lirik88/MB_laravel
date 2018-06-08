@@ -25,10 +25,21 @@
                         </div>
                         <div class="form-group">
                             <label>Тип(марка) прибора</label>
-                            {{Form::select('devicetype_id',
-                            $devicetypes,
-                            $device->devicetype->id,
-                            ['class' => 'form-control select2', 'style' => 'width: 100%;'])}}
+                            <div class="row">
+                                <div class="col-md-10">
+                                    {{Form::select('devicetype_id',
+                                    $devicetypes,
+                                    $device->devicetype->id,
+                                    ['class' => 'form-control select2',
+                                    'style' => 'width: 100%;'])}}
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{route('devicetypes.create')}}"
+                                       class="btn btn-success">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Заводской номер</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Device;
 use App\Devicetype;
 use App\Type;
 use App\Unit;
@@ -22,7 +23,7 @@ class DevicetypesController extends Controller
 	    $active_user = User::find($active_user_id);
 	    $devicetypes = Devicetype::all();
 	
-	    return view('admin.devicetypes.index', compact('active_user','devicetypes' ));
+	    return view('admin.devicetypes.index', compact('active_user','devicetypes'));
     }
 
     /**
@@ -107,7 +108,12 @@ class DevicetypesController extends Controller
      */
     public function destroy($id)
     {
-	    Devicetype::find($id)->delete();
-	    return redirect()->route('devicetypes.index');
+	    $device = Device::where('devicetype_id', $id)->first();
+	    if (isset($device)) {
+		    return redirect()->route('devicetypes.index');
+	    } else {
+		    Devicetype::find($id)->delete();
+		    return redirect()->route('devicetypes.index');
+	    }
     }
 }

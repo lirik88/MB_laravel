@@ -43,7 +43,7 @@
                             <label>Единица измерения</label>
                             {{Form::select('unit_id',
                             $units,
-                            $devicetype->unit->id,
+                            $devicetype->getUnitId(),
                             ['class' => 'form-control select2',
                             'style' => 'width: 100%;',
                             'placeholder' => 'Выберите единицу измерения'])}}

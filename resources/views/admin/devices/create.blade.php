@@ -19,14 +19,26 @@
                             {{Form::select('consumer_id',
                             $consumers,
                             null,
-                            ['class' => 'form-control select2', 'style' => 'width: 100%;'])}}
+                            ['class' => 'form-control select2',
+                             'style' => 'width: 100%;'])}}
                         </div>
                         <div class="form-group">
                             <label>Тип(марка) прибора</label>
-                            {{Form::select('devicetype_id',
+                            <div class="row">
+                                <div class="col-md-10">
+                                    {{Form::select('devicetype_id',
                             $devicetypes,
                             null,
-                            ['class' => 'form-control select2', 'style' => 'width: 100%;'])}}
+                            ['class' => 'form-control select2',
+                            'style' => 'width: 100%;'])}}
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{route('devicetypes.create')}}"
+                                       class="btn btn-success">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Заводской номер</label>
