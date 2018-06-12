@@ -35,12 +35,12 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <div class="logo">
+        <a href="{{route('home')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">ПП</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Поверка</b>Приборов</span>
-        </div>
+        </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
@@ -91,12 +91,7 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-                <li class="treeview">
-                    <a href="">
-                        <i class="glyphicon glyphicon-th"></i>
-                        <span>Главная</span>
-                    </a>
-                </li>
+
                 <li class="header">Справочники</li>
                 <li>
                     <a href="{{route('stamps.index')}}">
